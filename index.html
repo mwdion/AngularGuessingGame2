@@ -16,10 +16,17 @@
         Add Player Name
       </label>
       <input class="form-control focusedInput" type ="text" ng-model="playerName"><button type="button" class="btn btn-primary" ng-click= "addPlayer">Add</button>
-      <label></label>
-      <hr>
-        Player Name: {{playerName}}
-      <hr>
+      <label>Player Name: {{playerName}}</label>
+    </p>
+    <p>
+      <label for="selectRange">Select Range</label>
+      <select class="form-control focused input" ng-model="upper">
+        <option value=10>0 to 10</option>
+        <option value=50>0 to 50</option>
+        <option value=100>0 to 100</option>
+      </select>
+      <button type="button" class= "btn btn-primary">Set Range</button>
+      <label>Range: 0 to {{upper}}</label>
     </p>
   </div>
 <script src="bower_components/angular/angular.js"></script> 

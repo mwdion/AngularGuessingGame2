@@ -3,7 +3,8 @@
 
 app.controller('GameController', function(){
   this.playerName = ' ';
-  
+  this.upper = ' ';
+
 
 
 });
