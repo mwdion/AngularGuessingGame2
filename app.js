@@ -6,11 +6,11 @@ function getRandomNumber(upper) {
 
 app.controller('GameController', function($scope, $timeout){
   var randomNumber;
+  var guessCount = 0;
   this.playerName = ' ';
   this.upper = ' ';
   this.randomNumber = getRandomNumber();
   this.state = 1; // start screen
-  this.guessCount = 0;
   this.flash = '';
 
   this.updateUpper = function(upper){
@@ -47,13 +47,20 @@ app.controller('GameController', function($scope, $timeout){
             if(parsedGuess == this.randomNumber) {
                 this.flash = 'You got it!';
                 this.setState(4);
+                guessCount += 1;
+                this.guessCount = guessCount;
             } else if (parsedGuess < this.randomNumber) {
                 this.flash = 'Too low! Guess Again.';
                 this.setState(3);
+                guessCount += 1;
+                this.guessCount = guessCount;
             } else if (parsedGuess > this.randomNumber) {
                 this.flash = 'Too high! Guess Again.';
                 this.setState(3);
+                guessCount += 1;
+                this.guessCount = guessCount;
             }
+            console.log(guessCount);
         };
 
   this.resetGame = function() {
@@ -61,6 +68,7 @@ app.controller('GameController', function($scope, $timeout){
             this.playerGuess = 0;
             console.log($scope.upper);
             this.flash = '';
+            guessCount = 0;
         };
 
 });

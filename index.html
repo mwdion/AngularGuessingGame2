@@ -37,6 +37,7 @@
        <button type="button" class="btn btn-lg btn-warning btn-block" ng-click="game.guess()">Guess</button>
     <div ng-show="game.state >= 3">
       <h1>{{ game.flash }}</h1>
+      <h2>Guess Count: {{game.guessCount}}</h2>
     </div>  
   </div>
 <script src="bower_components/angular/angular.js"></script> 
