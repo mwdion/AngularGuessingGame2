@@ -9,7 +9,7 @@ app.controller('GameController', function($scope, $timeout){
   var guessCount = 0;
   var playersArray = [];
   var player = {};
-  $scope.players = player;
+  $scope.players = playersArray;
   this.playerName = ' ';
   this.upper = ' ';
   this.randomNumber = getRandomNumber();
@@ -31,7 +31,7 @@ app.controller('GameController', function($scope, $timeout){
   
   this.setState = function(newState) {
     this.state = newState;
-    this.playerGuess = 0;
+    this.playerGuess;
     console.log($scope.upper);
 
     if(newState == 3) { // flash screen
@@ -85,7 +85,7 @@ app.controller('GameController', function($scope, $timeout){
 
   this.resetGame = function() {
     this.state = 1;
-    this.playerGuess = 0;
+    this.playerGuess= " ";
     console.log($scope.upper);
     this.flash = '';
     guessCount = 0;
