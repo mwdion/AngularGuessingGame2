@@ -4,8 +4,25 @@
    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
+  <div ng-controller= "GameController as game">
+    <h1>
+      Welcome to the Number Guessing Game
+    </h1>
+    <p>
+      Directions: Enter your name.  Then set your range and click start.  Gameplay hints will show up on the page below the section Gameplay.  Enter a number until you guess the random number.  Your score should show up with your name undneath the scores section.
+    </p>
+    <p>
+      <label>
+        Add Player Name
+      </label>
+      <input class="form-control focusedInput" type ="text" ng-model="playerName"><button type="button" class="btn btn-primary" ng-click= "addPlayer">Add</button>
+      <label></label>
+      <hr>
+        Player Name: {{playerName}}
+      <hr>
+    </p>
+  </div>
 <script src="bower_components/angular/angular.js"></script> 
 <script type="text/javascript" src="app.js"></script>
-<p>{{"Hello" + " you!"}}</p>
 </body>
 </html>

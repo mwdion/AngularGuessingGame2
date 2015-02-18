@@ -1,1 +1,11 @@
-var app = angular.module('guessGame', []);
+(function(){
+  var app = angular.module('guessGame', []);
+
+app.controller('GameController', function(){
+  this.playerName = ' ';
+  
+
+
+});
+
+})();
