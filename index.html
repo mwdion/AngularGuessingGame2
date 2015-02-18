@@ -25,7 +25,7 @@
         <option value=50>0 to 50</option>
         <option value=100>0 to 100</option>
       </select>
-      <button type="button" class= "btn btn-primary" ng-click="game.setUpper()">Set Range</button>
+      <button type="button" class= "btn btn-primary" ng-click="game.updateUpper(upper)">Set Range</button>
       <label>Range: 0 to {{upper}}</label>
     </p>
     <div ng-show="game.state == 1">
