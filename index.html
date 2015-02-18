@@ -15,7 +15,7 @@
       <label>
         Add Player Name
       </label>
-      <input class="form-control focusedInput" type ="text" ng-model="playerName"><button type="button" class="btn btn-primary" ng-click= "addPlayer">Add</button>
+      <input class="form-control focusedInput" type ="text" ng-model="playerName"><button type="button" class="btn btn-primary" ng-click="game.updateName(playerName)">Add</button>
       <label>Player Name: {{playerName}}</label>
     </p>
     <p>
@@ -38,7 +38,13 @@
     <div ng-show="game.state >= 3">
       <h1>{{ game.flash }}</h1>
       <h2>Guess Count: {{game.guessCount}}</h2>
-    </div>  
+    </div> 
+    <div>
+      <h3>Scoreboard:</h3>
+        <ol>
+          <li ng-repeat= "(name, score) in players"></li>
+        </ol>
+    </div> 
   </div>
 <script src="bower_components/angular/angular.js"></script> 
 <script type="text/javascript" src="app.js"></script>
