@@ -28,6 +28,14 @@
       <button type="button" class= "btn btn-primary">Set Range</button>
       <label>Range: 0 to {{upper}}</label>
     </p>
+    <div ng-show="game.state == 1">
+      <p>Click Start to Begin!</p>
+       <button type="button" class="btn btn-lg btn-success btn-block" ng-click="game.setState(2)">Start</button> 
+    </div>
+    <div ng-show="game.state == 2"></div>
+       <input class="form-control focusedInput" type="text" ng-model="game.numGuess" on-click="this.select()" numerical /><br />
+       <button type="button" class="btn btn-lg btn-warning btn-block" ng-click="game.guess()">Guess</button>
+    <div ng-show="game.state >= 3"></div>  
   </div>
 <script src="bower_components/angular/angular.js"></script> 
 <script type="text/javascript" src="app.js"></script>
