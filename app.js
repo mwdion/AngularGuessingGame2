@@ -1,6 +1,9 @@
+
 function getRandomNumber(upper) {
-    return Math.floor((Math.random() * upper) + 1);
+  return Math.floor((Math.random() * upper) + 1);
 }
+
+
 (function(){
   var app = angular.module('guessGame', []);
 

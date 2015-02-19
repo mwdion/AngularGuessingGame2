@@ -5,54 +5,62 @@
    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div ng-controller= "GameController as game">
-    <h1 class="title">
-      Welcome to the Number Guessing Game
-    </h1>
+  <header class="container jumbotron">
+    <h1 class="title">Welcome to the Number Guessing Game</h1>
     <p class="directions">
       Directions: Enter your name.  Then set your range and click start.  Gameplay hints will appear on the screen after each guess.  Enter a number until you guess the random number.  
     </p>
-    <form class="form">
-      <div class="row">
-        <div class="col-md-6">
-          <label>
-            Add Player Name
-          </label>
-          <input class="form-control focusedInput" type ="text" ng-model="playerName" required><button type="button" class="btn btn-primary" ng-click="game.updateName(playerName)">Add</button>
-          <label>Player Name: {{playerName}}</label>
-        </div>
-        <div class="col-md-6">
-          <label for="selectRange">Select Range</label>
-          <select class="form-control focused input" ng-model="upper" required>
-            <option value=10>0 to 10</option>
-            <option value=50>0 to 50</option>
-            <option value=100>0 to 100</option>
-          </select>
-          <button type="button" class= "btn btn-primary" ng-click="game.updateUpper(upper)">Set Range</button>
-          <label>Range: 0 to {{upper}}</label>
-        </div>
+  </header>
+  <div class="container" ng-controller="GameCtrl">
+    <div class="row" ng-hide="isRegistered">
+      <div class="col-md-6">
+        <h2>Setup:</h2>
+        <form class="form" ng-submit="register(p)">
+          <div class="form-group">
+            <label>Your name</label>
+            <input class="form-control" type ="text" ng-model="p.name" required>
+          </div>
+          <div class="form-group">
+            <label>Difficulty</label>
+            <select class="form-control" ng-model="p.difficulty" required>
+              <option>Easy</option>
+              <option>Medium</option>
+              <option>Hard</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </div>
+        </form>
       </div>
-      <div ng-show="game.state == 1" class="begin">
-        <p>Click Start to Begin!</p>
-         <button type="button" class="btn btn-lg btn-success btn-block" ng-click="game.setState(2)" ng-disabled="form.$invalid">Start</button> 
-      </div>
-    </form>
-    <div ng-show="game.state == 2" class="guess">
-       <input class="form-control focusedInput" placeholder="Enter your guess here..."type="text" ng-model="game.playerGuess" on-click="this.select()" numerical /><br />
-       <button type="button" class="btn btn-lg btn-warning btn-block" ng-click="game.guess()">Guess</button>
     </div>
-    <div ng-show="game.state >= 3" class= "bg-info">
-      <h4 class="flash">{{ game.flash }}</h4>
-      <h5 class="flash">Guess Count: {{game.guessCount}}</h5>
-    </div> 
-    <div>
-      <h3 class="scoreboard">Scoreboard:</h3>
-        <ol>
-          <li ng-repeat= "game in players | orderBy:'score'">Player Name: {{game.name}}   Score: {{game.score}}</li>
-        </ol>
-    </div> 
-  </div>
-<script src="bower_components/angular/angular.js"></script> 
-<script type="text/javascript" src="app.js"></script>
+    <div class="row" ng-show="isRegistered">
+      <div class="col-md-6">
+        <h2>Hello {{player.name}}</h2>
+        <div class="jumbotron" ng-show="lastAttempt">
+          <div class="pull-right">
+            <span class="badge badge-primary">Attempts {{attempts.length}}</span>
+          </div>
+          <h1>Your guess {{lastAttempt.guess}} is {{lastAttempt.response}}</h1>  
+        </div>      
+      </div>
+      <div class="col-md-6">
+        <div ng-hide="gameOver">
+        <h3>Try to Guess my Number:</h3>
+        <form ng-submit="guess(n)">
+          <div class="form-group">
+            <input type="text" placeholder="Enter Number" ng-model="n">
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+        </div>
+        <button class="btn btn-primary" ng-show="gameOver" ng-click="newGame()">Play Again</button>
+       </div>
+    </div>
+  </div> 
+  <script src="bower_components/angular/angular.js"></script> 
+  <script type="text/javascript" src="app2.js"></script>
 </body>
 </html>
