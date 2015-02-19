@@ -57,6 +57,14 @@
         </form>
         </div>
         <button class="btn btn-primary" ng-show="gameOver" ng-click="newGame()">Play Again</button>
+        <button class="btn btn-primary" ng-show="gameOver" ng-click="viewScores(scoreCard)">Leaderboard</button>
+        <button class="btn btn-primary" ng-show="gameOver" ng-click="newPlayer()">Register New Player</button>
+  <div class="col-md-6" ng-controller="GameCtrl" ng-show="scoreboard">
+    <h1>Scoreboard:</h1>
+      <ol>
+        <li ng-repeat= "game in scoreCard | orderBy:'score'">Name: {{game.name}} Score: {{game.score}} {{ game.date | date : format : timezone}}</li>
+      </ol>
+  </div>
        </div>
     </div>
   </div> 

@@ -8,18 +8,20 @@ app.constant('random', function(upper) {
   return Math.floor((Math.random() * upper) + 1);
 });
 
-app.value('history', []);
+app.value('scoreCard', []);
 
-app.controller('Leaderboard', function($scope, history) {
-  
+app.controller('ScoreCtrl', function($scope, scoreCard) {
+  $scope.scoreCard = scoreCard;
 })
 
-app.controller('GameCtrl', function($scope, random, history) {
+app.controller('GameCtrl', function($scope, random, scoreCard) {
   $scope.isRegistered = false;
   $scope.player = null;
   $scope.attempts = [];
   $scope.lastAttempt = null;
   $scope.gameOver = false;
+  $scope.scores = null;
+  $scope.date = new Date();
   
   function start() {
     $scope.gameOver = false;
@@ -38,6 +40,7 @@ app.controller('GameCtrl', function($scope, random, history) {
   };
   
   $scope.newGame = function() {
+    $scope.scoreboard = false;
     start();
   }
   
@@ -52,6 +55,23 @@ app.controller('GameCtrl', function($scope, random, history) {
     };
     $scope.attempts.push($scope.lastAttempt);
     $scope.n = '';
-    if (response === 'correct') { $scope.gameOver = true; }
+    $scope.scores = {
+      name: $scope.player.name,
+      score: $scope.attempts.length,
+      date: $scope.date,
+    }
+    if (response === 'correct') { $scope.gameOver = true && scoreCard.push($scope.scores); }
+     console.log(scoreCard);
+    }
+
+  $scope.viewScores= function(){
+    $scope.scoreCard = scoreCard;
+    $scope.scoreboard = true;
+    console.log("YO");
+    console.log(scoreCard);
+  }
+
+  $scope.newPlayer = function(){
+    $scope.isRegistered = false;
   }
 });
