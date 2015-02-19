@@ -8,9 +8,13 @@ app.constant('random', function(upper) {
   return Math.floor((Math.random() * upper) + 1);
 });
 
-//app.value('player', null);
+app.value('history', []);
 
-app.controller('GameCtrl', function($scope, random) {
+app.controller('Leaderboard', function($scope, history) {
+  
+})
+
+app.controller('GameCtrl', function($scope, random, history) {
   $scope.isRegistered = false;
   $scope.player = null;
   $scope.attempts = [];
