@@ -10,31 +10,33 @@
       Welcome to the Number Guessing Game
     </h1>
     <p class="directions">
-      Directions: Enter your name.  Then set your range and click start.  Gameplay hints will show up on the page below the guess button.  Enter a number until you guess the random number.  Your score should show up with your name undneath the scoreboard.
+      Directions: Enter your name.  Then set your range and click start.  Gameplay hints will appear on the screen after each guess.  Enter a number until you guess the random number.  
     </p>
-    <div class="row">
-      <div class="col-md-6">
-        <label>
-          Add Player Name
-        </label>
-        <input class="form-control focusedInput" type ="text" ng-model="playerName"><button type="button" class="btn btn-primary" ng-click="game.updateName(playerName)">Add</button>
-        <label>Player Name: {{playerName}}</label>
+    <form class="form">
+      <div class="row">
+        <div class="col-md-6">
+          <label>
+            Add Player Name
+          </label>
+          <input class="form-control focusedInput" type ="text" ng-model="playerName" required><button type="button" class="btn btn-primary" ng-click="game.updateName(playerName)">Add</button>
+          <label>Player Name: {{playerName}}</label>
+        </div>
+        <div class="col-md-6">
+          <label for="selectRange">Select Range</label>
+          <select class="form-control focused input" ng-model="upper" required>
+            <option value=10>0 to 10</option>
+            <option value=50>0 to 50</option>
+            <option value=100>0 to 100</option>
+          </select>
+          <button type="button" class= "btn btn-primary" ng-click="game.updateUpper(upper)">Set Range</button>
+          <label>Range: 0 to {{upper}}</label>
+        </div>
       </div>
-      <div class="col-md-6">
-        <label for="selectRange">Select Range</label>
-        <select class="form-control focused input" ng-model="upper">
-          <option value=10>0 to 10</option>
-          <option value=50>0 to 50</option>
-          <option value=100>0 to 100</option>
-        </select>
-        <button type="button" class= "btn btn-primary" ng-click="game.updateUpper(upper)">Set Range</button>
-        <label>Range: 0 to {{upper}}</label>
+      <div ng-show="game.state == 1" class="begin">
+        <p>Click Start to Begin!</p>
+         <button type="button" class="btn btn-lg btn-success btn-block" ng-click="game.setState(2)" ng-disabled="form.$invalid">Start</button> 
       </div>
-    </div>
-    <div ng-show="game.state == 1" class="begin">
-      <p>Click Start to Begin!</p>
-       <button type="button" class="btn btn-lg btn-success btn-block" ng-click="game.setState(2)">Start</button> 
-    </div>
+    </form>
     <div ng-show="game.state == 2" class="guess">
        <input class="form-control focusedInput" placeholder="Enter your guess here..."type="text" ng-model="game.playerGuess" on-click="this.select()" numerical /><br />
        <button type="button" class="btn btn-lg btn-warning btn-block" ng-click="game.guess()">Guess</button>
@@ -44,7 +46,7 @@
       <h5 class="flash">Guess Count: {{game.guessCount}}</h5>
     </div> 
     <div>
-      <h3>Scoreboard:</h3>
+      <h3 class="scoreboard">Scoreboard:</h3>
         <ol>
           <li ng-repeat= "game in players | orderBy:'score'">Player Name: {{game.name}}   Score: {{game.score}}</li>
         </ol>
