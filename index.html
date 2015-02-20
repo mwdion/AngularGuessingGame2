@@ -54,11 +54,20 @@
           <div class="form-group">
             <button class="btn btn-primary">Submit</button>
           </div>
+          <div ng-hide="firstTime">
+            <label>Change Difficulty:</label>
+            <select class="form-control" ng-model="p.difficulty">
+              <option>Easy</option>
+              <option>Medium</option>
+              <option>Hard</option>
+            </select>
+            <button  ng-click="updateReg()" class="btn btn-primary">Update</button>
+          </div>
         </form>
         </div>
         <button class="btn btn-primary" ng-show="gameOver" ng-click="newGame()">Play Again</button>
         <button class="btn btn-primary" ng-show="gameOver" ng-click="viewScores(scoreCard)">Leaderboard</button>
-        <button class="btn btn-primary" ng-show="gameOver" ng-click="newPlayer()">Register New Player</button>
+        <button class="btn btn-primary" ng-show="gameOver" ng-click="updateReg()">Register New Player</button>
   <div class="col-md-6" ng-controller="GameCtrl" ng-show="scoreboard">
     <h1>Scoreboard:</h1>
       <ol>

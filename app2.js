@@ -22,6 +22,7 @@ app.controller('GameCtrl', function($scope, random, scoreCard) {
   $scope.gameOver = false;
   $scope.scores = null;
   $scope.date = new Date();
+  $scope.firstTime = true;
   
   function start() {
     $scope.gameOver = false;
@@ -60,18 +61,20 @@ app.controller('GameCtrl', function($scope, random, scoreCard) {
       score: $scope.attempts.length,
       date: $scope.date,
     }
-    if (response === 'correct') { $scope.gameOver = true && scoreCard.push($scope.scores); }
+    if (response === 'correct') { $scope.gameOver = true && scoreCard.push($scope.scores) }
+      $scope.firstTime = false;
      console.log(scoreCard);
     }
 
   $scope.viewScores= function(){
     $scope.scoreCard = scoreCard;
     $scope.scoreboard = true;
-    console.log("YO");
     console.log(scoreCard);
   }
 
-  $scope.newPlayer = function(){
+  $scope.updateReg = function(){
     $scope.isRegistered = false;
   }
+
+  
 });
